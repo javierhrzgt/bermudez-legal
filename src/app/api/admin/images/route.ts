@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
+import { cloudinary } from '@/lib/cloudinary'
 
 export const dynamic = 'force-dynamic'
 
@@ -10,34 +11,15 @@ export async function GET() {
       return NextResponse.json({ error: 'No autorizado' }, { status: 401 })
     }
 
-    const cloudName = process.env.CLOUDINARY_CLOUD_NAME
-    const apiKey = process.env.CLOUDINARY_API_KEY
-    const apiSecret = process.env.CLOUDINARY_API_SECRET
     const folder = process.env.CLOUDINARY_FOLDER
 
-    if (!cloudName || !apiKey || !apiSecret) {
-      return NextResponse.json({ error: 'Cloudinary no configurado' }, { status: 500 })
-    }
+    const result = await cloudinary.api.resources({
+      type: 'upload',
+      max_results: 100,
+      prefix: folder || undefined,
+    })
 
-    // Cloudinary Admin API uses Basic Auth (api_key:api_secret)
-    const basicAuth = Buffer.from(`${apiKey}:${apiSecret}`).toString('base64')
-
-    const params = new URLSearchParams({ max_results: '100', type: 'upload' })
-    if (folder) params.set('prefix', folder)
-
-    const res = await fetch(
-      `https://api.cloudinary.com/v1_1/${cloudName}/resources/image/upload?${params}`,
-      { headers: { Authorization: `Basic ${basicAuth}` } }
-    )
-
-    if (!res.ok) {
-      const errText = await res.text()
-      console.error('Cloudinary list error:', res.status, errText)
-      return NextResponse.json({ error: 'Error al obtener imágenes' }, { status: 500 })
-    }
-
-    const data = await res.json()
-    const images = (data.resources ?? []).map((r: {
+    const images = (result.resources ?? []).map((r: {
       secure_url: string
       public_id: string
       created_at: string
