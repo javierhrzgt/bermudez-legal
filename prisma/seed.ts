@@ -17,7 +17,24 @@ async function main() {
     },
   })
 
-  console.log("Seed completado. Usuario admin creado:", admin.email)
+  await prisma.siteConfig.upsert({
+    where: { id: "default" },
+    update: {},
+    create: {
+      id: "default",
+      siteName: "Bermudez Legal Consulting",
+      siteDescription: "Consultoría legal especializada en Guatemala. Protegemos sus intereses y acompañamos su crecimiento empresarial.",
+      contactEmail: "bermudezlegalconsulting@gmail.com",
+      contactPhone: "+502 3056 6897",
+      department: "Guatemala",
+      city: "Guatemala",
+      country: "Guatemala",
+    },
+  })
+
+  console.log("Seed completado.")
+  console.log("- Usuario admin creado:", admin.email)
+  console.log("- SiteConfig creado con valores por defecto")
 }
 
 main()

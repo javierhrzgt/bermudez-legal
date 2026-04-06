@@ -73,3 +73,28 @@ model BlogPost {
   @@index([slug])
   @@index([published])
 }
+
+model SiteConfig {
+  id              String   @id @default("default")
+  siteName        String   @default("Bermudez Legal Consulting")
+  siteDescription String?  @db.Text
+  logo            String?
+  favicon         String?
+  ogImage         String?
+  contactEmail    String?
+  contactPhone    String?
+  openingHours    String?
+  businessHours   Json?
+  street          String?
+  streetNumber    String?
+  zone            String?
+  department      String?
+  city            String?
+  postalCode      String?
+  country         String   @default("Guatemala")
+  facebook        String?
+  instagram      String?
+  linkedin       String?
+  twitter         String?
+  updatedAt       DateTime @updatedAt
+}
