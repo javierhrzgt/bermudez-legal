@@ -5,10 +5,17 @@ import { usePathname } from "next/navigation";
 import { Scale, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 
+interface SiteConfig {
+  siteName: string;
+  logo: string;
+}
+
 export default function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [config, setConfig] = useState<SiteConfig>({ siteName: 'Bermudez Legal Consulting', logo: '' });
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,10 +25,20 @@ export default function Header() {
     return () => window?.removeEventListener?.('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setMenuOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    fetch('/api/config')
+      .then(res => res.json())
+      .then(data => {
+        if (data.siteName) setConfig({ ...config, siteName: data.siteName });
+        if (data.logo) setConfig(prev => ({ ...prev, logo: data.logo }));
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, []);
 
   const navLinks = [
     { href: '/', label: 'Inicio' },
@@ -29,6 +46,8 @@ export default function Header() {
     { href: '/blog', label: 'Blog' },
     { href: '/contacto', label: 'Contacto' },
   ];
+
+  const siteNameParts = config.siteName.split(' ');
 
   return (
     <header
@@ -44,9 +63,9 @@ export default function Header() {
             </div>
             <div>
               <h1 className="text-xl font-serif font-bold text-primary-900">
-                Bermudez Legal
+                {siteNameParts[0]} {siteNameParts[1]}
               </h1>
-              <p className="text-xs text-gray-600">Consulting</p>
+              <p className="text-xs text-gray-600">{siteNameParts.slice(2).join(' ')}</p>
             </div>
           </Link>
 

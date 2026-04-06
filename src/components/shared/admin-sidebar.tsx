@@ -6,16 +6,17 @@ import { usePathname } from 'next/navigation'
 import { signOut } from 'next-auth/react'
 import {
   LayoutDashboard, CalendarDays, FileEdit, MessageSquare,
-  Settings, LogOut, ExternalLink, Menu, X, Users,
+  Settings, LogOut, ExternalLink, Menu, X, Users, Lock,
 } from 'lucide-react'
 
 const allNavItems = [
-  { href: '/admin',               label: 'Dashboard',     icon: LayoutDashboard, roles: ['admin', 'editor'] },
-  { href: '/admin/citas',         label: 'Citas',         icon: CalendarDays,    roles: ['admin', 'editor'] },
-  { href: '/admin/blog',          label: 'Blog',          icon: FileEdit,        roles: ['admin', 'editor'] },
-  { href: '/admin/mensajes',      label: 'Mensajes',      icon: MessageSquare,   roles: ['admin', 'editor'] },
-  { href: '/admin/usuarios',      label: 'Usuarios',      icon: Users,           roles: ['admin']           },
-  { href: '/admin/configuracion', label: 'Configuracion', icon: Settings,        roles: ['admin', 'editor'] },
+  { href: '/admin',                  label: 'Dashboard',            icon: LayoutDashboard, roles: ['admin', 'editor'] },
+  { href: '/admin/citas',            label: 'Citas',                icon: CalendarDays,    roles: ['admin', 'editor'] },
+  { href: '/admin/blog',             label: 'Blog',                 icon: FileEdit,       roles: ['admin', 'editor'] },
+  { href: '/admin/mensajes',         label: 'Mensajes',             icon: MessageSquare,  roles: ['admin', 'editor'] },
+  { href: '/admin/usuarios',         label: 'Usuarios',             icon: Users,          roles: ['admin']           },
+  { href: '/admin/configuracion-sitio', label: 'Configuración del Sitio', icon: Settings,   roles: ['admin', 'editor'] },
+  { href: '/admin/cambiar-contrasena', label: 'Cambiar Contraseña',   icon: Lock,          roles: ['admin', 'editor'] },
 ]
 
 export default function AdminSidebar({ userName, userRole }: { userName: string; userRole: string }) {

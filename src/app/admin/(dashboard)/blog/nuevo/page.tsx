@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft, Save } from 'lucide-react'
 import { ImageUploader } from '@/components/shared/ImageUploader'
+import { RichTextEditor } from '@/components/admin/rich-text-editor'
 
 export default function NuevoBlogPage() {
   const router = useRouter()
@@ -102,12 +103,10 @@ export default function NuevoBlogPage() {
         </div>
         <div>
           <label className="block text-sm font-medium text-foreground mb-1">Contenido</label>
-          <textarea
+          <RichTextEditor
             value={form.content}
-            onChange={(e) => setField('content', e.target.value)}
-            rows={12}
-            className="w-full px-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
-            placeholder="Contenido del articulo (Markdown)"
+            onChange={(value) => setField('content', value)}
+            placeholder="Escribe el contenido del artículo..."
           />
         </div>
 

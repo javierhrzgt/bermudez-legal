@@ -1,9 +1,11 @@
 import { type Metadata } from 'next'
 import { prisma } from '@/lib/prisma'
-import {
-  MessageSquare, CalendarDays, FileEdit,
-  Clock, TrendingUp, CheckCircle2,
-} from 'lucide-react'
+import { auth } from '@/lib/auth'
+import { MessageSquare, CalendarDays, FileEdit } from 'lucide-react'
+import { DashboardStatCard } from '@/components/admin/dashboard-stat-card'
+import { PriorityAlerts } from '@/components/admin/priority-alerts'
+import { RecentMessages } from '@/components/admin/recent-messages'
+import { UpcomingAppointments } from '@/components/admin/upcoming-appointments'
 
 export const dynamic = 'force-dynamic'
 
@@ -11,7 +13,26 @@ export const metadata: Metadata = {
   title: 'Dashboard',
 }
 
+function getGreeting(): string {
+  const hour = new Date().getHours()
+  if (hour < 12) return 'Buenos días'
+  if (hour < 18) return 'Buenas tardes'
+  return 'Buenas noches'
+}
+
+function formatFullDate(): string {
+  return new Date().toLocaleDateString('es-ES', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  })
+}
+
 export default async function DashboardPage() {
+  const session = await auth()
+  const userName = session?.user?.name || session?.user?.email?.split('@')[0] || 'Admin'
+
   const [
     totalMessages,
     newMessages,
@@ -19,6 +40,8 @@ export default async function DashboardPage() {
     pendingAppointments,
     totalPosts,
     publishedPosts,
+    recentMessages,
+    upcomingAppointments,
   ] = await Promise.all([
     prisma.contactMessage.count(),
     prisma.contactMessage.count({ where: { status: 'new' } }),
@@ -26,76 +49,70 @@ export default async function DashboardPage() {
     prisma.appointment.count({ where: { status: 'pendiente' } }),
     prisma.blogPost.count(),
     prisma.blogPost.count({ where: { published: true } }),
+    prisma.contactMessage.findMany({
+      take: 5,
+      orderBy: { createdAt: 'desc' },
+      select: { id: true, name: true, subject: true, status: true, createdAt: true },
+    }),
+    prisma.appointment.findMany({
+      where: { date: { gte: new Date() } },
+      take: 5,
+      orderBy: { date: 'asc' },
+      select: { id: true, clientName: true, date: true, time: true, service: true, status: true },
+    }),
   ])
-
-  const cards = [
-    {
-      label: 'Mensajes Totales',
-      value: totalMessages,
-      icon: MessageSquare,
-      color: 'bg-blue-50 text-blue-600',
-      border: 'border-blue-100',
-    },
-    {
-      label: 'Mensajes Nuevos',
-      value: newMessages,
-      icon: Clock,
-      color: 'bg-amber-50 text-amber-600',
-      border: 'border-amber-100',
-    },
-    {
-      label: 'Citas Totales',
-      value: totalAppointments,
-      icon: CalendarDays,
-      color: 'bg-green-50 text-green-600',
-      border: 'border-green-100',
-    },
-    {
-      label: 'Citas Pendientes',
-      value: pendingAppointments,
-      icon: TrendingUp,
-      color: 'bg-purple-50 text-purple-600',
-      border: 'border-purple-100',
-    },
-    {
-      label: 'Articulos Totales',
-      value: totalPosts,
-      icon: FileEdit,
-      color: 'bg-indigo-50 text-indigo-600',
-      border: 'border-indigo-100',
-    },
-    {
-      label: 'Articulos Publicados',
-      value: publishedPosts,
-      icon: CheckCircle2,
-      color: 'bg-emerald-50 text-emerald-600',
-      border: 'border-emerald-100',
-    },
-  ]
 
   return (
     <div>
+      {/* Header con saludo contextual */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-foreground">Dashboard</h1>
-        <p className="text-muted-foreground mt-1">Resumen general de la aplicacion</p>
+        <h1 className="text-2xl font-bold text-foreground">
+          {getGreeting()}, {userName}
+        </h1>
+        <p className="text-muted-foreground mt-1">{formatFullDate()}</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {cards.map((card) => {
-          const Icon = card.icon
-          return (
-            <div
-              key={card.label}
-              className={`bg-white rounded-xl p-6 border ${card.border} hover:shadow-md transition-shadow`}
-            >
-              <div className={`inline-flex p-3 rounded-lg ${card.color} mb-4`}>
-                <Icon className="h-6 w-6" />
-              </div>
-              <p className="text-sm text-muted-foreground mb-1">{card.label}</p>
-              <p className="text-3xl font-bold text-foreground">{card.value}</p>
-            </div>
-          )
-        })}
+      {/* Alertas de prioridad */}
+      <div className="mb-6">
+        <PriorityAlerts newMessages={newMessages} pendingAppointments={pendingAppointments} />
+      </div>
+
+      {/* Stat Cards - 3 columnas */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <DashboardStatCard
+          title="Mensajes"
+          total={totalMessages}
+          highlight={newMessages}
+          highlightLabel="nuevos"
+          icon={MessageSquare}
+          href="/admin/mensajes"
+          delay={0}
+        />
+        <DashboardStatCard
+          title="Citas"
+          total={totalAppointments}
+          highlight={pendingAppointments}
+          highlightLabel="pendientes"
+          icon={CalendarDays}
+          href="/admin/citas"
+          delay={100}
+        />
+        <DashboardStatCard
+          title="Artículos"
+          total={totalPosts}
+          highlight={publishedPosts}
+          highlightLabel="publicados"
+          icon={FileEdit}
+          href="/admin/blog"
+          createHref="/admin/blog/nuevo"
+          delay={200}
+        />
+      </div>
+
+      {/* Actividad reciente - 2 columnas */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
+        <RecentMessages messages={recentMessages} />
+        <UpcomingAppointments appointments={upcomingAppointments} />
       </div>
     </div>
   )

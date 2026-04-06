@@ -9,6 +9,14 @@ import type { BlogPost } from '@prisma/client';
 export const dynamic = "force-dynamic";
 
 function formatBlogContent(content: string): string {
+  if (!content) return ''
+  
+  const hasHtmlTags = /<[a-z][\s\S]*>/i.test(content)
+  
+  if (hasHtmlTags) {
+    return content
+  }
+  
   const lines = content.split('\n');
   const html: string[] = [];
   let inList = false;
@@ -18,7 +26,7 @@ function formatBlogContent(content: string): string {
     if (paragraphBuffer.length > 0) {
       const text = paragraphBuffer.join('<br />');
       if (text.trim()) {
-        html.push(`<p class="mb-6 text-gray-700 leading-relaxed">${text}</p>`);
+        html.push(`<p class="mb-6 text-gray-600 leading-relaxed">${text}</p>`);
       }
       paragraphBuffer = [];
     }
@@ -38,14 +46,12 @@ function formatBlogContent(content: string): string {
   for (const line of lines) {
     const trimmed = line.trim();
 
-    // Empty line — flush current paragraph
     if (!trimmed) {
       flushParagraph();
       closeList();
       continue;
     }
 
-    // H2 heading
     if (trimmed.startsWith('## ')) {
       flushParagraph();
       closeList();
@@ -54,7 +60,6 @@ function formatBlogContent(content: string): string {
       continue;
     }
 
-    // H3 heading
     if (trimmed.startsWith('### ')) {
       flushParagraph();
       closeList();
@@ -63,18 +68,16 @@ function formatBlogContent(content: string): string {
       continue;
     }
 
-    // List item
     if (trimmed.startsWith('- ')) {
       flushParagraph();
       if (!inList) {
-        html.push('<ul class="list-disc list-inside space-y-2 mb-6 text-gray-700 pl-2">');
+        html.push('<ul class="list-disc list-inside space-y-2 mb-6 text-gray-600 pl-2">');
         inList = true;
       }
       html.push(`<li class="leading-relaxed">${formatInline(trimmed.slice(2))}</li>`);
       continue;
     }
 
-    // Regular text — accumulate into paragraph
     closeList();
     paragraphBuffer.push(formatInline(trimmed));
   }
@@ -107,7 +110,7 @@ export default async function BlogPostPage({ params }: PageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <div className="min-h-screen bg-linear-to-b from-gray-50 to-white">
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-6">
           <Link
@@ -154,7 +157,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       <section className="pb-12">
         <div className="max-w-4xl mx-auto px-6">
           {post?.image && (
-            <div className="aspect-[3/2] relative rounded-2xl overflow-hidden shadow-xl bg-gray-100">
+            <div className="aspect-3/2 relative rounded-2xl overflow-hidden shadow-xl bg-gray-100">
               <Image
                 src={post.image}
                 alt={post?.title ?? 'Artículo'}
@@ -170,7 +173,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         <div className="max-w-4xl mx-auto px-6">
           <div className="prose prose-lg max-w-none">
             <div
-              className="text-gray-700 leading-relaxed space-y-6"
+              className="space-y-6 [&_p]:text-gray-600 [&_h1]:text-primary-900 [&_h2]:text-primary-900 [&_h3]:text-primary-900 [&_li]:text-primary-900 [&_ol]:text-primary-900 [&_ul]:text-primary-900 [&_strong]:text-primary-900"
               dangerouslySetInnerHTML={{
                 __html: formatBlogContent(post?.content ?? '')
               }}

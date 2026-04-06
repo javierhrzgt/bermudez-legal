@@ -2,27 +2,37 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { Providers } from '@/components/shared/providers'
+import { prisma } from '@/lib/prisma'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXTAUTH_URL ?? 'http://localhost:3000'),
-  title: {
-    template: '%s | Bermudez Legal Consulting',
-    default: 'Bermudez Legal Consulting',
-  },
-  description: 'Consultoría legal especializada en Guatemala. Expertos en propiedad intelectual, contratos empresariales y asesoría legal para emprendedores y empresas.',
-  icons: {
-    icon: '/favicon.svg',
-    shortcut: '/favicon.svg',
-  },
-  openGraph: {
-    title: "Bermudez Legal Consulting | Bufete de Abogados en Guatemala",
-    description: "Consultoría legal especializada en Guatemala. Expertos en propiedad intelectual, contratos empresariales y asesoría legal para emprendedores y empresas.",
-    siteName:'Bermudez Legal Consulting',
-    images: ['/og-image.png'],
-    type: 'website',
-  },
+export async function generateMetadata(): Promise<Metadata> {
+  const config = await prisma.siteConfig.findUnique({
+    where: { id: 'default' },
+  })
+
+  const siteName = config?.siteName || 'Bermudez Legal Consulting'
+  const siteDescription = config?.siteDescription || 'Consultoría legal especializada en Guatemala. Protegemos sus intereses y acompañamos su crecimiento empresarial.'
+
+  return {
+    metadataBase: new URL(process.env.NEXTAUTH_URL ?? 'http://localhost:3000'),
+    title: {
+      template: '%s | ' + siteName,
+      default: siteName,
+    },
+    description: siteDescription,
+    icons: {
+      icon: config?.favicon || '/favicon.svg',
+      shortcut: config?.favicon || '/favicon.svg',
+    },
+    openGraph: {
+      title: siteName + ' | Bufete de Abogados en Guatemala',
+      description: siteDescription,
+      siteName: siteName,
+      images: config?.ogImage ? [config.ogImage] : ['/og-image.png'],
+      type: 'website',
+    },
+  }
 }
 
 export default function RootLayout({

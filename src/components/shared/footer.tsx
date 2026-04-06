@@ -1,8 +1,52 @@
+'use client';
+
 import Link from "next/link";
 import { Scale, Mail, Phone, MapPin } from "lucide-react";
+import { useEffect, useState } from "react";
+
+interface SiteConfig {
+  siteName: string;
+  siteDescription: string;
+  contactEmail: string;
+  contactPhone: string;
+  department: string;
+  city: string;
+  street: string;
+  streetNumber: string;
+  zone: string;
+  country: string;
+  facebook: string;
+  instagram: string;
+  linkedin: string;
+  twitter: string;
+}
 
 export default function Footer() {
+  const [config, setConfig] = useState<SiteConfig | null>(null);
   const currentYear = new Date().getFullYear();
+
+  useEffect(() => {
+    fetch('/api/config')
+      .then(res => res.json())
+      .then(data => setConfig(data))
+      .catch(() => {});
+  }, []);
+
+  const siteName = config?.siteName || 'Bermudez Legal Consulting';
+  const siteNameParts = siteName.split(' ');
+  const siteDescription = config?.siteDescription || 'Consultoría legal especializada en Guatemala. Protegemos sus intereses y acompañamos su crecimiento empresarial.';
+
+  const address = [
+    config?.street,
+    config?.streetNumber,
+    config?.zone,
+  ].filter(Boolean).join(', ');
+
+  const location = [
+    config?.city,
+    config?.department,
+    config?.country,
+  ].filter(Boolean).join(', ');
 
   return (
     <footer className="bg-linear-to-b from-gray-50 to-white border-t border-gray-200 mt-auto">
@@ -16,14 +60,13 @@ export default function Footer() {
               </div>
               <div>
                 <h3 className="text-lg font-serif font-bold text-primary-900">
-                  Bermudez Legal
+                  {siteNameParts[0]} {siteNameParts[1]}
                 </h3>
-                <p className="text-xs text-gray-600">Consulting</p>
+                <p className="text-xs text-gray-600">{siteNameParts.slice(2).join(' ')}</p>
               </div>
             </div>
             <p className="text-gray-600 text-sm leading-relaxed">
-              Consultoría legal especializada en Guatemala. Protegemos sus intereses y
-              acompañamos su crecimiento empresarial.
+              {siteDescription}
             </p>
           </div>
 
@@ -31,24 +74,33 @@ export default function Footer() {
           <div>
             <h4 className="font-serif font-semibold text-primary-900 mb-4">Contacto</h4>
             <div className="space-y-3">
-              <a
-                href="mailto:bermudezlegalconsulting@gmail.com"
-                className="flex items-center gap-3 text-gray-600 hover:text-primary-800 transition-colors group"
-              >
-                <Mail className="shrink-0 h-4 w-4 text-primary-700 group-hover:text-primary-800" />
-                <span className="text-sm min-w-0 break-all">bermudezlegalconsulting@gmail.com</span>
-              </a>
-              <a
-                href="tel:+50230566897"
-                className="flex items-center gap-3 text-gray-600 hover:text-primary-800 transition-colors group"
-              >
-                <Phone className="h-4 w-4 text-primary-700 group-hover:text-primary-800" />
-                <span className="text-sm">+502 3056 6897</span>
-              </a>
-              <div className="flex items-start gap-3 text-gray-600">
-                <MapPin className="h-4 w-4 text-primary-700 mt-0.5" />
-                <span className="text-sm">Guatemala, Guatemala</span>
-              </div>
+              {config?.contactEmail && (
+                <a
+                  href={`mailto:${config.contactEmail}`}
+                  className="flex items-center gap-3 text-gray-600 hover:text-primary-800 transition-colors group"
+                >
+                  <Mail className="shrink-0 h-4 w-4 text-primary-700 group-hover:text-primary-800" />
+                  <span className="text-sm min-w-0 break-all">{config.contactEmail}</span>
+                </a>
+              )}
+              {config?.contactPhone && (
+                <a
+                  href={`tel:${config.contactPhone.replace(/\s/g, '')}`}
+                  className="flex items-center gap-3 text-gray-600 hover:text-primary-800 transition-colors group"
+                >
+                  <Phone className="h-4 w-4 text-primary-700 group-hover:text-primary-800" />
+                  <span className="text-sm">{config.contactPhone}</span>
+                </a>
+              )}
+              {location && (
+                <div className="flex items-start gap-3 text-gray-600">
+                  <MapPin className="h-4 w-4 text-primary-700 mt-0.5" />
+                  <div className="text-sm">
+                    {address && <p>{address}</p>}
+                    <p>{location}</p>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
@@ -81,7 +133,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="pt-8 border-t border-gray-200 text-center">
           <p className="text-sm text-gray-500">
-            &copy; {currentYear} Bermudez Legal Consulting. Todos los derechos reservados.
+            &copy; {currentYear} {siteName}. Todos los derechos reservados.
           </p>
         </div>
       </div>
