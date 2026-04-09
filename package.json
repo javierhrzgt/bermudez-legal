@@ -31,7 +31,7 @@
     "class-variance-authority": "^0.7.1",
     "cloudinary": "^2.9.0",
     "clsx": "^2.1.1",
-    "defu": "^6.1.6",
+    "defu": "^6.1.7",
     "lucide-react": "^1.7.0",
     "next": "15.5.14",
     "next-auth": "5.0.0-beta.30",
