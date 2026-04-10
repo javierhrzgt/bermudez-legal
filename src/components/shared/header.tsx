@@ -1,8 +1,9 @@
 'use client';
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Scale, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { siteConfig } from "@/config/site";
 
@@ -30,8 +31,6 @@ export default function Header() {
     { href: '/contacto', label: 'Contacto' },
   ];
 
-  const siteNameParts = siteConfig.siteName.split(' ');
-
   return (
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
@@ -41,14 +40,28 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="bg-primary-800 p-2.5 rounded-lg group-hover:bg-primary-700 transition-colors">
-              <Scale className="h-6 w-6 text-white" />
-            </div>
+            {siteConfig.logo ? (
+              <Image
+                src={siteConfig.logo}
+                alt={siteConfig.siteName}
+                width={40}
+                height={40}
+                className="rounded-lg object-contain"
+              />
+            ) : (
+              <div className="bg-primary-800 p-2.5 rounded-lg group-hover:bg-primary-700 transition-colors">
+                {siteConfig.logoFallbackIcon && (
+                  <siteConfig.logoFallbackIcon className="h-6 w-6 text-white" />
+                )}
+              </div>
+            )}
             <div>
               <h1 className="text-xl font-serif font-bold text-primary-900">
-                {siteNameParts[0]} {siteNameParts[1]}
+                {siteConfig.siteNameLine1}
               </h1>
-              <p className="text-xs text-gray-600">{siteNameParts.slice(2).join(' ')}</p>
+              {siteConfig.siteNameLine2 && (
+                <p className="text-xs text-gray-600">{siteConfig.siteNameLine2}</p>
+              )}
             </div>
           </Link>
 

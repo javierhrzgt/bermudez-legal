@@ -33,7 +33,7 @@ export default function ServiciosPage() {
               <div className="aspect-4/3 relative rounded-2xl overflow-hidden shadow-2xl">
                 <Image
                   src={siteConfig.hero.image}
-                  alt="Servicios legales de Bermudez Legal Consulting"
+                  alt={`Servicios legales de ${siteConfig.siteName}`}
                   fill
                   className="object-cover"
                 />
