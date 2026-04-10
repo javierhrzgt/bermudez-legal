@@ -149,9 +149,9 @@ export function ImageUploader({ value, onChange }: ImageUploaderProps) {
                       key={img.public_id}
                       type="button"
                       onClick={() => selectFromGallery(img.url)}
-                      className={`group relative rounded-lg overflow-hidden border-2 transition-all hover:border-primary ${
+                      className={`group relative rounded-lg overflow-hidden border-2 transition-all hover:border-primary-800 ${
                         value === img.url
-                          ? 'border-primary ring-2 ring-primary/20'
+                          ? 'border-primary-800 ring-2 ring-primary-800/20'
                           : 'border-border'
                       }`}
                     >
@@ -170,8 +170,8 @@ export function ImageUploader({ value, onChange }: ImageUploaderProps) {
                         <span className="flex-shrink-0 ml-1">{formatSize(img.bytes)}</span>
                       </div>
                       {value === img.url && (
-                        <div className="absolute inset-0 bg-primary/20 flex items-center justify-center">
-                          <span className="bg-primary text-primary-foreground text-xs px-2 py-1 rounded-full font-medium">
+                        <div className="absolute inset-0 bg-primary-800/20 flex items-center justify-center">
+                          <span className="bg-primary-800 text-white text-xs px-2 py-1 rounded-full font-medium">
                             Seleccionada
                           </span>
                         </div>
@@ -208,7 +208,7 @@ export function ImageUploader({ value, onChange }: ImageUploaderProps) {
             <button
               type="button"
               onClick={openGallery}
-              className="text-primary hover:text-primary/80 font-medium flex-shrink-0 ml-2"
+              className="text-primary-800 hover:text-primary-800/80 font-medium flex-shrink-0 ml-2"
             >
               Cambiar
             </button>
@@ -224,8 +224,8 @@ export function ImageUploader({ value, onChange }: ImageUploaderProps) {
             onClick={() => !uploading && inputRef.current?.click()}
             className={`relative border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all ${
               dragActive
-                ? 'border-primary bg-primary/5'
-                : 'border-border hover:border-primary/50 hover:bg-muted/30'
+                ? 'border-primary-800 bg-primary-800/5'
+                : 'border-border hover:border-primary-800/50 hover:bg-muted/30'
             } ${uploading ? 'pointer-events-none opacity-60' : ''}`}
           >
             <input
@@ -237,14 +237,14 @@ export function ImageUploader({ value, onChange }: ImageUploaderProps) {
             />
             {uploading ? (
               <div className="flex flex-col items-center gap-3">
-                <Loader2 className="h-10 w-10 text-primary animate-spin" />
+                <Loader2 className="h-10 w-10 text-primary-800 animate-spin" />
                 <p className="text-sm text-muted-foreground">Subiendo imagen...</p>
               </div>
             ) : (
               <div className="flex flex-col items-center gap-3">
                 <div className="p-3 bg-muted rounded-full">
                   {dragActive ? (
-                    <Upload className="h-8 w-8 text-primary" />
+                    <Upload className="h-8 w-8 text-primary-800" />
                   ) : (
                     <ImageIcon className="h-8 w-8 text-muted-foreground" />
                   )}

@@ -88,7 +88,7 @@ export default function CitasPage() {
         </div>
         <button
           onClick={openNew}
-          className="flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium"
+          className="flex items-center gap-2 bg-primary-800 text-white px-5 py-2.5 rounded-lg hover:bg-primary-700 transition-colors text-sm font-medium"
         >
           <Plus className="h-4 w-4" /> Nueva Cita
         </button>
@@ -133,7 +133,7 @@ export default function CitasPage() {
                       </span>
                     </td>
                     <td className="px-6 py-4 text-right">
-                      <button onClick={() => openEdit(a)} className="p-2 text-muted-foreground hover:text-primary transition-colors">
+                      <button onClick={() => openEdit(a)} className="p-2 text-muted-foreground hover:text-primary-800 transition-colors">
                         <Edit2 className="h-4 w-4" />
                       </button>
                       <button onClick={() => handleDelete(a.id)} className="p-2 text-muted-foreground hover:text-destructive transition-colors">
@@ -166,7 +166,7 @@ export default function CitasPage() {
                   <input
                     value={form.clientName}
                     onChange={(e) => setField('clientName', e.target.value)}
-                    className="w-full pl-10 pr-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+                    className="w-full pl-10 pr-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary-700 focus:border-transparent text-sm"
                     placeholder="Nombre completo"
                   />
                 </div>
@@ -178,7 +178,7 @@ export default function CitasPage() {
                     type="email"
                     value={form.clientEmail}
                     onChange={(e) => setField('clientEmail', e.target.value)}
-                    className="w-full px-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+                    className="w-full px-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary-700 focus:border-transparent text-sm"
                   />
                 </div>
                 <div>
@@ -188,7 +188,7 @@ export default function CitasPage() {
                     <input
                       value={form.clientPhone}
                       onChange={(e) => setField('clientPhone', e.target.value)}
-                      className="w-full pl-10 pr-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+                      className="w-full pl-10 pr-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary-700 focus:border-transparent text-sm"
                     />
                   </div>
                 </div>
@@ -202,7 +202,7 @@ export default function CitasPage() {
                       type="date"
                       value={form.date}
                       onChange={(e) => setField('date', e.target.value)}
-                      className="w-full pl-10 pr-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+                      className="w-full pl-10 pr-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary-700 focus:border-transparent text-sm"
                     />
                   </div>
                 </div>
@@ -214,7 +214,7 @@ export default function CitasPage() {
                       type="time"
                       value={form.time}
                       onChange={(e) => setField('time', e.target.value)}
-                      className="w-full pl-10 pr-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+                      className="w-full pl-10 pr-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary-700 focus:border-transparent text-sm"
                     />
                   </div>
                 </div>
@@ -224,7 +224,7 @@ export default function CitasPage() {
                 <select
                   value={form.service}
                   onChange={(e) => setField('service', e.target.value)}
-                  className="w-full px-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+                  className="w-full px-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary-700 focus:border-transparent text-sm"
                 >
                   <option value="">Seleccionar servicio</option>
                   <option value="Consultoria Corporativa">Consultoria Corporativa</option>
@@ -241,7 +241,7 @@ export default function CitasPage() {
                   <select
                     value={form.status}
                     onChange={(e) => setField('status', e.target.value)}
-                    className="w-full px-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+                    className="w-full px-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary-700 focus:border-transparent text-sm"
                   >
                     <option value="pendiente">Pendiente</option>
                     <option value="confirmada">Confirmada</option>
@@ -258,7 +258,7 @@ export default function CitasPage() {
                     value={form.notes}
                     onChange={(e) => setField('notes', e.target.value)}
                     rows={3}
-                    className="w-full pl-10 pr-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm resize-none"
+                    className="w-full pl-10 pr-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary-700 focus:border-transparent text-sm resize-none"
                   />
                 </div>
               </div>
@@ -273,7 +273,7 @@ export default function CitasPage() {
               <button
                 onClick={handleSave}
                 disabled={saving || !form.clientName || !form.date || !form.time || !form.service}
-                className="flex-1 bg-primary text-primary-foreground px-4 py-2.5 rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium disabled:opacity-50"
+                className="flex-1 bg-primary-800 text-white px-4 py-2.5 rounded-lg hover:bg-primary-700 transition-colors text-sm font-medium disabled:opacity-50"
               >
                 {saving ? 'Guardando...' : 'Guardar'}
               </button>

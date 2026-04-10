@@ -55,7 +55,7 @@ export default function BlogAdminPage() {
         </div>
         <Link
           href="/admin/blog/nuevo"
-          className="flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium"
+          className="flex items-center gap-2 bg-primary-800 text-white px-5 py-2.5 rounded-lg hover:bg-primary-700 transition-colors text-sm font-medium"
         >
           <Plus className="h-4 w-4" /> Nuevo Articulo
         </Link>
@@ -100,14 +100,14 @@ export default function BlogAdminPage() {
                     <td className="px-6 py-4 text-right">
                       <button
                         onClick={() => togglePublish(post)}
-                        className="p-2 text-muted-foreground hover:text-primary transition-colors"
+                        className="p-2 text-muted-foreground hover:text-primary-700 transition-colors"
                         title={post.published ? 'Ocultar' : 'Publicar'}
                       >
                         {post.published ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                       </button>
                       <Link
                         href={`/admin/blog/${post.id}`}
-                        className="p-2 text-muted-foreground hover:text-primary transition-colors inline-block"
+                        className="p-2 text-muted-foreground hover:text-primary-700 transition-colors inline-block"
                       >
                         <Edit2 className="h-4 w-4" />
                       </Link>

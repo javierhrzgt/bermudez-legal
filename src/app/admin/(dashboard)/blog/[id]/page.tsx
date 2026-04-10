@@ -83,7 +83,7 @@ export default function EditBlogPage() {
           <input
             value={form.title}
             onChange={(e) => setField('title', e.target.value)}
-            className="w-full px-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+            className="w-full px-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary-700 focus:border-transparent text-sm"
           />
         </div>
         <div className="grid grid-cols-2 gap-4">
@@ -92,7 +92,7 @@ export default function EditBlogPage() {
             <input
               value={form.slug}
               onChange={(e) => setField('slug', e.target.value)}
-              className="w-full px-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm text-muted-foreground"
+              className="w-full px-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary-700 focus:border-transparent text-sm text-muted-foreground"
             />
           </div>
           <div>
@@ -101,7 +101,7 @@ export default function EditBlogPage() {
               type="date"
               value={form.date}
               onChange={(e) => setField('date', e.target.value)}
-              className="w-full px-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+              className="w-full px-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary-700 focus:border-transparent text-sm"
             />
           </div>
         </div>
@@ -111,7 +111,7 @@ export default function EditBlogPage() {
             value={form.summary}
             onChange={(e) => setField('summary', e.target.value)}
             rows={2}
-            className="w-full px-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm resize-none"
+            className="w-full px-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary-700 focus:border-transparent text-sm resize-none"
           />
         </div>
         <div>
@@ -133,7 +133,7 @@ export default function EditBlogPage() {
           <input
             value={form.tags}
             onChange={(e) => setField('tags', e.target.value)}
-            className="w-full px-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+            className="w-full px-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary-700 focus:border-transparent text-sm"
           />
         </div>
         <div className="flex items-center gap-3">
@@ -156,7 +156,7 @@ export default function EditBlogPage() {
           <button
             onClick={handleSave}
             disabled={saving || !form.title || !form.slug}
-            className="flex-1 flex items-center justify-center gap-2 bg-primary text-primary-foreground px-4 py-2.5 rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium disabled:opacity-50"
+            className="flex-1 flex items-center justify-center gap-2 bg-primary-800 text-white px-4 py-2.5 rounded-lg hover:bg-primary-700 transition-colors text-sm font-medium disabled:opacity-50"
           >
             <Save className="h-4 w-4" /> {saving ? 'Guardando...' : 'Guardar'}
           </button>
