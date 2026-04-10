@@ -72,14 +72,14 @@ export default function EditBlogPage() {
           <ArrowLeft className="h-5 w-5 text-muted-foreground" />
         </Link>
         <div>
-          <h1 className="text-3xl font-bold text-foreground">Editar Articulo</h1>
+          <h1 className="text-3xl font-bold text-primary-900">Editar Articulo</h1>
           <p className="text-muted-foreground mt-1">Modificar articulo existente</p>
         </div>
       </div>
 
       <div className="bg-white rounded-xl border border-border p-6 space-y-5">
         <div>
-          <label className="block text-sm font-medium text-foreground mb-1">Titulo</label>
+          <label className="block text-sm font-medium text-primary-900 mb-1">Titulo</label>
           <input
             value={form.title}
             onChange={(e) => setField('title', e.target.value)}
@@ -88,7 +88,7 @@ export default function EditBlogPage() {
         </div>
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-foreground mb-1">Slug (URL)</label>
+            <label className="block text-sm font-medium text-primary-900 mb-1">Slug (URL)</label>
             <input
               value={form.slug}
               onChange={(e) => setField('slug', e.target.value)}
@@ -96,7 +96,7 @@ export default function EditBlogPage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-foreground mb-1">Fecha</label>
+            <label className="block text-sm font-medium text-primary-900 mb-1">Fecha</label>
             <input
               type="date"
               value={form.date}
@@ -106,7 +106,7 @@ export default function EditBlogPage() {
           </div>
         </div>
         <div>
-          <label className="block text-sm font-medium text-foreground mb-1">Resumen</label>
+          <label className="block text-sm font-medium text-primary-900 mb-1">Resumen</label>
           <textarea
             value={form.summary}
             onChange={(e) => setField('summary', e.target.value)}
@@ -115,7 +115,7 @@ export default function EditBlogPage() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-foreground mb-1">Contenido</label>
+          <label className="block text-sm font-medium text-primary-900 mb-1">Contenido</label>
           <RichTextEditor
             value={form.content}
             onChange={(value) => setField('content', value)}
@@ -129,7 +129,7 @@ export default function EditBlogPage() {
         />
 
         <div>
-          <label className="block text-sm font-medium text-foreground mb-1">Etiquetas (separadas por comas)</label>
+          <label className="block text-sm font-medium text-primary-900 mb-1">Etiquetas (separadas por comas)</label>
           <input
             value={form.tags}
             onChange={(e) => setField('tags', e.target.value)}
@@ -144,12 +144,12 @@ export default function EditBlogPage() {
             onChange={(e) => setField('published', e.target.checked)}
             className="h-4 w-4 rounded border-input"
           />
-          <label htmlFor="published" className="text-sm text-foreground">Publicado</label>
+          <label htmlFor="published" className="text-sm text-primary-900">Publicado</label>
         </div>
         <div className="flex gap-3 pt-4 border-t border-border">
           <Link
             href="/admin/blog"
-            className="flex-1 text-center px-4 py-2.5 border border-input rounded-lg text-foreground hover:bg-muted transition-colors text-sm font-medium"
+            className="flex-1 text-center px-4 py-2.5 border border-input rounded-lg text-primary-900 hover:bg-muted transition-colors text-sm font-medium"
           >
             Cancelar
           </Link>

@@ -83,7 +83,7 @@ export default function CitasPage() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-foreground">Citas</h1>
+          <h1 className="text-3xl font-bold text-primary-900">Citas</h1>
           <p className="text-muted-foreground mt-1">Gestion de citas con clientes</p>
         </div>
         <button
@@ -119,14 +119,14 @@ export default function CitasPage() {
                 {appointments.map((a) => (
                   <tr key={a.id} className="border-b border-border/50 hover:bg-muted/20">
                     <td className="px-6 py-4">
-                      <p className="font-medium text-foreground">{a.clientName}</p>
+                      <p className="font-medium text-primary-900">{a.clientName}</p>
                       <p className="text-muted-foreground text-xs">{a.clientEmail}</p>
                     </td>
-                    <td className="px-6 py-4 text-foreground">
+                    <td className="px-6 py-4 text-primary-900">
                       {new Date(a.date).toLocaleDateString('es-GT')}
                     </td>
-                    <td className="px-6 py-4 text-foreground">{a.time}</td>
-                    <td className="px-6 py-4 text-foreground">{a.service}</td>
+                    <td className="px-6 py-4 text-primary-900">{a.time}</td>
+                    <td className="px-6 py-4 text-primary-900">{a.service}</td>
                     <td className="px-6 py-4">
                       <span className={`px-3 py-1 rounded-full text-xs font-medium ${statusColors[a.status] ?? 'bg-gray-100 text-gray-600'}`}>
                         {a.status}
@@ -153,14 +153,14 @@ export default function CitasPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
           <div className="bg-white rounded-2xl w-full max-w-lg p-6 mx-4 max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-bold text-foreground">{editId ? 'Editar Cita' : 'Nueva Cita'}</h2>
+              <h2 className="text-xl font-bold text-primary-900">{editId ? 'Editar Cita' : 'Nueva Cita'}</h2>
               <button onClick={() => setModalOpen(false)} className="p-2 hover:bg-muted rounded-lg">
                 <X className="h-5 w-5" />
               </button>
             </div>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-foreground mb-1">Nombre del Cliente</label>
+                <label className="block text-sm font-medium text-primary-900 mb-1">Nombre del Cliente</label>
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <input
@@ -173,7 +173,7 @@ export default function CitasPage() {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-1">Email</label>
+                  <label className="block text-sm font-medium text-primary-900 mb-1">Email</label>
                   <input
                     type="email"
                     value={form.clientEmail}
@@ -182,7 +182,7 @@ export default function CitasPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-1">Telefono</label>
+                  <label className="block text-sm font-medium text-primary-900 mb-1">Telefono</label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <input
@@ -195,7 +195,7 @@ export default function CitasPage() {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-1">Fecha</label>
+                  <label className="block text-sm font-medium text-primary-900 mb-1">Fecha</label>
                   <div className="relative">
                     <CalendarDays className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <input
@@ -207,7 +207,7 @@ export default function CitasPage() {
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-1">Hora</label>
+                  <label className="block text-sm font-medium text-primary-900 mb-1">Hora</label>
                   <div className="relative">
                     <Clock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <input
@@ -220,7 +220,7 @@ export default function CitasPage() {
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-foreground mb-1">Servicio</label>
+                <label className="block text-sm font-medium text-primary-900 mb-1">Servicio</label>
                 <select
                   value={form.service}
                   onChange={(e) => setField('service', e.target.value)}
@@ -237,7 +237,7 @@ export default function CitasPage() {
               </div>
               {editId && (
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-1">Estado</label>
+                  <label className="block text-sm font-medium text-primary-900 mb-1">Estado</label>
                   <select
                     value={form.status}
                     onChange={(e) => setField('status', e.target.value)}
@@ -251,7 +251,7 @@ export default function CitasPage() {
                 </div>
               )}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-1">Notas</label>
+                <label className="block text-sm font-medium text-primary-900 mb-1">Notas</label>
                 <div className="relative">
                   <FileText className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <textarea
@@ -266,7 +266,7 @@ export default function CitasPage() {
             <div className="flex gap-3 mt-6">
               <button
                 onClick={() => setModalOpen(false)}
-                className="flex-1 px-4 py-2.5 border border-input rounded-lg text-foreground hover:bg-muted transition-colors text-sm font-medium"
+                className="flex-1 px-4 py-2.5 border border-input rounded-lg text-primary-900 hover:bg-muted transition-colors text-sm font-medium"
               >
                 Cancelar
               </button>

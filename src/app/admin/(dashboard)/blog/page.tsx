@@ -50,7 +50,7 @@ export default function BlogAdminPage() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-foreground">Blog</h1>
+          <h1 className="text-3xl font-bold text-primary-900">Blog</h1>
           <p className="text-muted-foreground mt-1">Gestion de articulos del blog</p>
         </div>
         <Link
