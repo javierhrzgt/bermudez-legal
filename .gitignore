@@ -77,3 +77,4 @@ Thumbs.db
 dist/
 build/
 .playwright-mcp
+.superpowers
