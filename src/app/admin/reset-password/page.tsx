@@ -2,11 +2,13 @@
 
 import { Suspense, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useSearchParams } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Scale, Lock, AlertCircle, CheckCircle2 } from 'lucide-react'
+import { Lock, AlertCircle, CheckCircle2 } from 'lucide-react'
+import { siteConfig } from '@/config/site'
 
 const schema = z
   .object({
@@ -61,14 +63,18 @@ function ResetPasswordContent() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-3 mb-4">
-            <div className="bg-primary p-3 rounded-xl">
-              <Scale className="h-7 w-7 text-primary-foreground" />
-            </div>
+            {siteConfig.logo ? (
+              <Image src={siteConfig.logo} alt={siteConfig.siteName} width={48} height={48} className="rounded-xl object-contain" />
+            ) : (
+              <div className="bg-primary-800 p-3 rounded-xl">
+                <siteConfig.logoFallbackIcon className="h-7 w-7 text-white" />
+              </div>
+            )}
           </div>
           <h1 className="text-3xl font-bold text-foreground mb-2">
             Restablecer Contrasena
           </h1>
-          <p className="text-muted-foreground">Mi App</p>
+          <p className="text-muted-foreground">{siteConfig.siteName}</p>
         </div>
 
         <div className="bg-white rounded-2xl p-8 shadow-lg border border-border">
@@ -83,7 +89,7 @@ function ResetPasswordContent() {
               </p>
               <Link
                 href="/admin/login"
-                className="inline-block bg-primary text-primary-foreground py-3 px-6 rounded-lg font-medium hover:bg-primary/90 transition-all mt-4"
+                className="inline-block bg-primary-800 text-white py-3 px-6 rounded-lg font-medium hover:bg-primary-700 transition-all mt-4"
               >
                 Ir a Iniciar Sesion
               </Link>
@@ -114,7 +120,7 @@ function ResetPasswordContent() {
                         type="password"
                         autoComplete="new-password"
                         placeholder="Minimo 6 caracteres"
-                        className="w-full pl-12 pr-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-background text-foreground placeholder:text-muted-foreground"
+                        className="w-full pl-12 pr-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-primary-700 focus:border-transparent transition-all bg-background text-foreground placeholder:text-muted-foreground"
                         {...register('newPassword')}
                       />
                     </div>
@@ -134,7 +140,7 @@ function ResetPasswordContent() {
                         type="password"
                         autoComplete="new-password"
                         placeholder="Repita la contrasena"
-                        className="w-full pl-12 pr-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-background text-foreground placeholder:text-muted-foreground"
+                        className="w-full pl-12 pr-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-primary-700 focus:border-transparent transition-all bg-background text-foreground placeholder:text-muted-foreground"
                         {...register('confirmPassword')}
                       />
                     </div>
@@ -146,7 +152,7 @@ function ResetPasswordContent() {
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full bg-primary text-primary-foreground py-3 rounded-lg font-medium hover:bg-primary/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full bg-primary-800 text-white py-3 rounded-lg font-medium hover:bg-primary-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isLoading ? 'Restableciendo...' : 'Restablecer Contrasena'}
                   </button>
@@ -155,7 +161,7 @@ function ResetPasswordContent() {
                 <div className="text-center">
                   <Link
                     href="/admin/forgot-password"
-                    className="text-primary hover:text-primary/80 font-medium text-sm"
+                    className="text-primary-700 hover:text-primary-800 font-medium text-sm"
                   >
                     Solicitar nuevo enlace
                   </Link>

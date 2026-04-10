@@ -6,8 +6,9 @@ import { usePathname } from 'next/navigation'
 import { signOut } from 'next-auth/react'
 import {
   LayoutDashboard, CalendarDays, FileEdit, MessageSquare,
-  Settings, LogOut, ExternalLink, Menu, X, Users, Lock,
+  LogOut, ExternalLink, Menu, X, Users, Lock,
 } from 'lucide-react'
+import { siteConfig } from '@/config/site'
 
 const allNavItems = [
   { href: '/admin',                  label: 'Dashboard',            icon: LayoutDashboard, roles: ['admin', 'editor'] },
@@ -50,7 +51,7 @@ export default function AdminSidebar({ userName, userRole }: { userName: string;
             <LayoutDashboard className="h-6 w-6 text-white" />
           </div>
           <div>
-            <h2 className="font-bold text-lg leading-tight text-white">Bermudez Legal</h2>
+            <h2 className="font-bold text-lg leading-tight text-white">{siteConfig.siteNameLine1}</h2>
             <p className="text-primary-foreground/60 text-xs">Panel Admin</p>
           </div>
           <button
@@ -125,7 +126,7 @@ export default function AdminSidebar({ userName, userRole }: { userName: string;
   return (
     <>
       {/* Barra superior mobile */}
-      <div className="fixed top-0 left-0 right-0 h-16 bg-primary flex items-center px-4 z-50 lg:hidden">
+      <div className="fixed top-0 left-0 right-0 h-16 bg-primary-900 flex items-center px-4 z-50 lg:hidden">
         <button
           onClick={() => setOpen(true)}
           className="p-2 rounded-lg hover:bg-white/10 transition-colors"
@@ -133,7 +134,7 @@ export default function AdminSidebar({ userName, userRole }: { userName: string;
         >
           <Menu className="h-6 w-6 text-white" />
         </button>
-        <span className="font-bold text-white ml-3">Mi App</span>
+        <span className="font-bold text-white ml-3">{siteConfig.siteNameLine1}</span>
       </div>
 
       {/* Overlay oscuro mobile */}
@@ -146,7 +147,7 @@ export default function AdminSidebar({ userName, userRole }: { userName: string;
 
       {/* Sidebar */}
       <aside
-        className={`fixed left-0 top-0 h-full w-64 bg-primary text-white flex flex-col z-50
+        className={`fixed left-0 top-0 h-full w-64 bg-primary-900 text-white flex flex-col z-50
                     transition-transform duration-300 ease-in-out
                     ${open ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}
       >

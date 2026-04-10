@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
     const arrayBuffer = await file.arrayBuffer()
     const buffer = Buffer.from(arrayBuffer)
     const base64Data = `data:${file.type};base64,${buffer.toString('base64')}`
-    const folder = process.env.CLOUDINARY_FOLDER ?? 'bermudez-legal/blog'
+    const folder = process.env.CLOUDINARY_FOLDER ?? 'blog'
 
     const result = await cloudinary.uploader.upload(base64Data, {
       folder,

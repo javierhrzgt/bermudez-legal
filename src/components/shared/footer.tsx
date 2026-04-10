@@ -1,13 +1,12 @@
 'use client';
 
 import Link from "next/link";
-import { Scale, Mail, Phone, MapPin } from "lucide-react";
+import Image from "next/image";
+import { Mail, Phone, MapPin } from "lucide-react";
 import { siteConfig } from "@/config/site";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-
-  const siteNameParts = siteConfig.siteName.split(' ');
 
   const address = [
     siteConfig.contact.address.street,
@@ -28,14 +27,28 @@ export default function Footer() {
           {/* Brand Section */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="bg-primary-800 p-2 rounded-lg">
-                <Scale className="h-5 w-5 text-white" />
-              </div>
+              {siteConfig.logo ? (
+                <Image
+                  src={siteConfig.logo}
+                  alt={siteConfig.siteName}
+                  width={32}
+                  height={32}
+                  className="rounded-lg object-contain"
+                />
+              ) : (
+                <div className="bg-primary-800 p-2 rounded-lg">
+                  {siteConfig.logoFallbackIcon && (
+                    <siteConfig.logoFallbackIcon className="h-5 w-5 text-white" />
+                  )}
+                </div>
+              )}
               <div>
                 <h3 className="text-lg font-serif font-bold text-primary-900">
-                  {siteNameParts[0]} {siteNameParts[1]}
+                  {siteConfig.siteNameLine1}
                 </h3>
-                <p className="text-xs text-gray-600">{siteNameParts.slice(2).join(' ')}</p>
+                {siteConfig.siteNameLine2 && (
+                  <p className="text-xs text-gray-600">{siteConfig.siteNameLine2}</p>
+                )}
               </div>
             </div>
             <p className="text-gray-600 text-sm leading-relaxed">

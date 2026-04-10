@@ -8,10 +8,18 @@ export interface ServiceItem {
   features: string[]
 }
 
+export interface LogoConfig {
+  logo: string
+  logoFallbackIcon: LucideIcon
+}
+
 export const siteConfig = {
   siteName: 'Bermudez Legal Consulting',
+  siteNameLine1: 'Bermudez Legal',
+  siteNameLine2: 'Consulting',
   siteDescription: 'Consultoría legal especializada en Guatemala. Protegemos sus intereses y acompañamos su crecimiento empresarial.',
-  logo: '/logo.svg',
+  logo: '',
+  logoFallbackIcon: Scale,
   favicon: '/favicon.svg',
   ogImage: '/og-image.png',
 
@@ -19,7 +27,7 @@ export const siteConfig = {
     title: 'Consultoría Legal de Confianza en Guatemala',
     subtitle: 'Protegemos sus intereses legales con experiencia, profesionalismo y dedicación. Especialistas en propiedad intelectual y derecho empresarial.',
     image: 'https://res.cloudinary.com/dlnn5kezq/image/upload/v1775102690/oficina_lf3v0g.webp',
-    imageAlt: 'Oficina de Bermudez Legal Consulting',
+    imageAlt: 'Foto de la oficina',
     ctaPrimary: { label: 'Agendar Consulta', href: '/contacto' },
     ctaSecondary: { label: 'Nuestros Servicios', href: '/servicios' },
   },

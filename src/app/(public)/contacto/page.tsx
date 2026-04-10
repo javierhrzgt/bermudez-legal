@@ -106,7 +106,7 @@ export default function ContactoPage() {
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="Ubicación de Bermudez Legal Consulting"
+                    title={`Ubicación de ${siteConfig.siteName}`}
                   />
                 </div>
               )}
