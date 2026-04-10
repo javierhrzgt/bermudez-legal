@@ -40,22 +40,28 @@ El **panel administrativo** permite al equipo del bufete gestionar mensajes entr
 ## Capturas de Pantalla
 
 **Homepage**
-<!-- TODO: agregar screenshot -->
+![Homepage](docs/screenshots/homepage.png)
 
 **Servicios**
-<!-- TODO: agregar screenshot -->
+![Servicios](docs/screenshots/servicios.png)
 
 **Blog**
-<!-- TODO: agregar screenshot -->
+![Blog](docs/screenshots/blog.png)
 
 **Contacto**
-<!-- TODO: agregar screenshot -->
+![Contacto](docs/screenshots/contacto.png)
 
 **Admin Dashboard**
-<!-- TODO: agregar screenshot -->
+![Admin Dashboard](docs/screenshots/admin-dashboard.png)
 
 **Editor de Blog**
-<!-- TODO: agregar screenshot -->
+![Editor de Blog](docs/screenshots/admin-blog-editor.png)
+
+**Gestión de Citas**
+![Gestión de Citas](docs/screenshots/admin-citas.png)
+
+**Configuración del Sitio**
+![Configuración del Sitio](docs/screenshots/admin-configuracion-sitio.png)
 
 ---
 
@@ -128,7 +134,10 @@ Antes de instalar el proyecto, asegurate de tener lo siguiente en tu sistema:
    ```
 
 5. **Crear el archivo de variables de entorno:**
-   Crear un archivo `.env` en la raíz del proyecto con las variables descritas en la sección [Variables de Entorno](#variables-de-entorno).
+   ```bash
+   cp .env.example .env
+   ```
+   Luego editar `.env` con tus valores. Ver sección [Variables de Entorno](#variables-de-entorno).
 
 6. **Generar el cliente de Prisma:**
    ```bash
@@ -159,7 +168,13 @@ Antes de instalar el proyecto, asegurate de tener lo siguiente en tu sistema:
 
 ## Variables de Entorno
 
-El proyecto no incluye un archivo `.env.example`. Crear el archivo `.env` en la raíz del proyecto con las siguientes variables:
+Copiar el archivo `.env.example` incluido en el repositorio y rellenarlo con tus valores:
+
+```bash
+cp .env.example .env
+```
+
+Variables disponibles:
 
 | Variable               | Descripción                                                        | Requerida | Ejemplo                                  |
 | ---------------------- | ------------------------------------------------------------------ | --------- | ---------------------------------------- |
