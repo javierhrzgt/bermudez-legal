@@ -1,42 +1,22 @@
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import ContactForm from "@/components/shared/contact-form";
-import { prisma } from "@/lib/prisma";
+import { siteConfig } from "@/config/site";
 
-export const dynamic = 'force-dynamic'
-
-async function getSiteConfig() {
-  const config = await prisma.siteConfig.findUnique({
-    where: { id: 'default' },
-  })
-  return config
-}
-
-function buildFullAddress(config: {
-  street?: string | null
-  streetNumber?: string | null
-  zone?: string | null
-  city?: string | null
-  department?: string | null
-  country?: string | null
-}) {
+function buildFullAddress() {
+  const { address } = siteConfig.contact;
   const parts = [
-    config.street,
-    config.streetNumber,
-    config.zone,
-    config.city,
-    config.department,
-    config.country,
-  ].filter(Boolean)
-  return parts.join(', ')
+    address.street,
+    address.streetNumber,
+    address.zone,
+    address.city,
+    address.department,
+    address.country,
+  ].filter(Boolean);
+  return parts.join(', ');
 }
 
-export default async function ContactoPage() {
-  const config = await getSiteConfig()
-
-  const contactEmail = config?.contactEmail || 'bermudezlegalconsulting@gmail.com'
-  const contactPhone = config?.contactPhone || '+502 3056 6897'
-  const openingHours = config?.openingHours || 'Lunes a Viernes: 8:00 AM - 5:00 PM'
-  const fullAddress = buildFullAddress(config || {})
+export default function ContactoPage() {
+  const fullAddress = buildFullAddress();
 
   return (
     <div className="min-h-screen bg-linear-to-b from-gray-50 to-white">
@@ -62,9 +42,9 @@ export default async function ContactoPage() {
                   Información de Contacto
                 </h2>
                 <div className="space-y-6">
-                  {contactEmail && (
+                  {siteConfig.contact.email && (
                     <a
-                      href={`mailto:${contactEmail}`}
+                      href={`mailto:${siteConfig.contact.email}`}
                       className="flex items-start gap-4 group"
                     >
                       <div className="bg-primary-100 p-3 rounded-lg group-hover:bg-primary-200 transition-colors">
@@ -72,19 +52,19 @@ export default async function ContactoPage() {
                       </div>
                       <div>
                         <h4 className="font-semibold text-primary-900">Email</h4>
-                        <p className="text-gray-600 text-sm">{contactEmail}</p>
+                        <p className="text-gray-600 text-sm">{siteConfig.contact.email}</p>
                       </div>
                     </a>
                   )}
 
-                  {contactPhone && (
-                    <a href={`tel:${contactPhone.replace(/\s/g, '')}`} className="flex items-start gap-4 group">
+                  {siteConfig.contact.phone && (
+                    <a href={`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`} className="flex items-start gap-4 group">
                       <div className="bg-primary-100 p-3 rounded-lg group-hover:bg-primary-200 transition-colors">
                         <Phone className="h-5 w-5 text-primary-800" />
                       </div>
                       <div>
                         <h4 className="font-semibold text-primary-900">Teléfono</h4>
-                        <p className="text-gray-600 text-sm">{contactPhone}</p>
+                        <p className="text-gray-600 text-sm">{siteConfig.contact.phone}</p>
                       </div>
                     </a>
                   )}
@@ -101,14 +81,14 @@ export default async function ContactoPage() {
                     </div>
                   )}
 
-                  {openingHours && (
+                  {siteConfig.contact.openingHours && (
                     <div className="flex items-start gap-4">
                       <div className="bg-primary-100 p-3 rounded-lg">
                         <Clock className="h-5 w-5 text-primary-800" />
                       </div>
                       <div>
                         <h4 className="font-semibold text-primary-900">Horario</h4>
-                        <p className="text-gray-600 text-sm whitespace-pre-line">{openingHours}</p>
+                        <p className="text-gray-600 text-sm whitespace-pre-line">{siteConfig.contact.openingHours}</p>
                       </div>
                     </div>
                   )}
@@ -119,7 +99,7 @@ export default async function ContactoPage() {
               {fullAddress && (
                 <div className="rounded-xl overflow-hidden shadow-lg border border-gray-200">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61876.51244988539!2d-90.55503245!3d14.6349149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8589a180655c3345%3A0x4a72c7815b1e7b10!2sCiudad%20de%20Guatemala!5e0!3m2!1ses!2sgt!4v1710000000000!5m2!1ses!2sgt"
+                    src={siteConfig.contact.mapEmbedUrl}
                     width="100%"
                     height="250"
                     style={{ border: 0 }}

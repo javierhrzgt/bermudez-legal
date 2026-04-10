@@ -1,30 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Scale, Shield, FileText, Users, ArrowRight, BookOpen } from 'lucide-react';
-import { prisma } from '@/lib/prisma';
+import { Scale, ArrowRight, BookOpen } from 'lucide-react';
+import { siteConfig } from '@/config/site';
 import type { BlogPost } from '@prisma/client';
+import { prisma } from '@/lib/prisma';
 
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
-  const services = [
-    {
-      icon: Shield,
-      title: 'Propiedad Intelectual',
-      description: 'Registro y protección de marcas, patentes y derechos de autor en Guatemala.',
-    },
-    {
-      icon: FileText,
-      title: 'Contratos Empresariales',
-      description: 'Redacción y revisión de contratos comerciales, laborales y de servicios.',
-    },
-    {
-      icon: Users,
-      title: 'Asesoría Legal Corporativa',
-      description: 'Acompañamiento legal integral para empresas y emprendedores.',
-    },
-  ];
-
   let latestPosts: BlogPost[] = [];
   try {
     latestPosts = await prisma.blogPost.findMany({
@@ -44,32 +27,32 @@ export default async function Home() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <h1 className="text-5xl lg:text-6xl font-serif font-bold text-primary-900 leading-tight">
-                Consultoría Legal de <span className="text-primary-700">Confianza</span> en Guatemala
+                {siteConfig.hero.title}
               </h1>
               <p className="text-xl text-gray-600 leading-relaxed">
-                Protegemos sus intereses legales con experiencia, profesionalismo y dedicación. Especialistas en propiedad intelectual y derecho empresarial.
+                {siteConfig.hero.subtitle}
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link
-                  href="/contacto"
+                  href={siteConfig.hero.ctaPrimary.href}
                   className="inline-flex items-center gap-2 bg-primary-800 text-white px-8 py-4 rounded-lg font-medium hover:bg-primary-700 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
                 >
-                  <span>Agendar Consulta</span>
+                  <span>{siteConfig.hero.ctaPrimary.label}</span>
                   <ArrowRight className="h-5 w-5" />
                 </Link>
                 <Link
-                  href="/servicios"
+                  href={siteConfig.hero.ctaSecondary.href}
                   className="inline-flex items-center gap-2 bg-white text-primary-800 px-8 py-4 rounded-lg font-medium hover:bg-gray-50 transition-all border-2 border-primary-800"
                 >
-                  <span>Nuestros Servicios</span>
+                  <span>{siteConfig.hero.ctaSecondary.label}</span>
                 </Link>
               </div>
             </div>
             <div className="relative">
               <div className="aspect-video relative rounded-2xl overflow-hidden shadow-2xl">
                 <Image
-                  src="https://res.cloudinary.com/dlnn5kezq/image/upload/v1775102690/oficina_lf3v0g.webp"
-                  alt="Oficina de Bermudez Legal Consulting"
+                  src={siteConfig.hero.image}
+                  alt={siteConfig.hero.imageAlt}
                   fill
                   className="object-cover"
                   priority
@@ -97,8 +80,8 @@ export default async function Home() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {services?.map?.((service: typeof services[number], index: number) => {
-              const Icon = service?.icon;
+            {siteConfig.services.slice(0, 3).map((service, index) => {
+              const Icon = service.icon;
               return (
                 <div
                   key={index}
@@ -108,14 +91,14 @@ export default async function Home() {
                     {Icon && <Icon className="h-7 w-7 text-white" />}
                   </div>
                   <h3 className="text-xl font-serif font-semibold text-primary-900 mb-3">
-                    {service?.title ?? 'Servicio'}
+                    {service.title}
                   </h3>
                   <p className="text-gray-600 leading-relaxed">
-                    {service?.description ?? ''}
+                    {service.description}
                   </p>
                 </div>
               );
-            }) ?? null}
+            })}
           </div>
 
           <div className="text-center mt-12">
@@ -198,16 +181,16 @@ export default async function Home() {
       <section className="py-24 bg-primary-900">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl font-serif font-bold text-white mb-6">
-            ¿Necesita Asesoría Legal?
+            {siteConfig.cta.title}
           </h2>
           <p className="text-xl text-primary-100 mb-8 leading-relaxed">
-            Contáctenos para una consulta inicial. Estamos listos para ayudarle a proteger sus intereses y hacer crecer su negocio.
+            {siteConfig.cta.subtitle}
           </p>
           <Link
-            href="/contacto"
+            href={siteConfig.cta.cta.href}
             className="inline-flex items-center gap-2 bg-white text-primary-900 px-8 py-4 rounded-lg font-medium hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl"
           >
-            <span>Agendar Consulta Ahora</span>
+            <span>{siteConfig.cta.cta.label}</span>
             <ArrowRight className="h-5 w-5" />
           </Link>
         </div>
