@@ -85,7 +85,7 @@ export default function MensajesPage() {
                 <button
                   key={msg.id}
                   onClick={() => openMessage(msg)}
-                  className={`w-full text-left px-5 py-4 hover:bg-muted/30 transition-colors ${selected?.id === msg.id ? 'bg-primary/5' : ''}`}
+                  className={`w-full text-left px-5 py-4 hover:bg-muted/30 transition-colors ${selected?.id === msg.id ? 'bg-primary-800/5' : ''}`}
                 >
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex items-center gap-2 min-w-0">
@@ -131,7 +131,7 @@ export default function MensajesPage() {
                       updateStatus(selected.id, e.target.value)
                       setSelected({ ...selected, status: e.target.value })
                     }}
-                    className="text-xs border border-input rounded-lg px-3 py-1.5 focus:ring-2 focus:ring-primary"
+                    className="text-xs border border-input rounded-lg px-3 py-1.5 focus:ring-2 focus:ring-primary-700"
                   >
                     <option value="new">Nuevo</option>
                     <option value="read">Leido</option>

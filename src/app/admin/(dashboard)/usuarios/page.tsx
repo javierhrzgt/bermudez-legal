@@ -123,8 +123,8 @@ export default function UsuariosPage() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-3">
-          <div className="bg-primary/10 p-3 rounded-xl">
-            <Users className="h-6 w-6 text-primary" />
+          <div className="bg-primary-100 p-3 rounded-xl">
+            <Users className="h-6 w-6 text-primary-700" />
           </div>
           <div>
             <h1 className="text-2xl font-bold text-foreground">Usuarios</h1>
@@ -133,7 +133,7 @@ export default function UsuariosPage() {
         </div>
         <button
           onClick={() => { setShowForm(!showForm); setMessage(null) }}
-          className="flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium"
+          className="flex items-center gap-2 bg-primary-800 text-white px-5 py-2.5 rounded-lg hover:bg-primary-700 transition-colors text-sm font-medium"
         >
           {showForm ? <X className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
           {showForm ? 'Cancelar' : 'Nuevo Usuario'}
@@ -165,7 +165,7 @@ export default function UsuariosPage() {
                   type="text"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+                  className="w-full px-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary-700 focus:border-transparent text-sm"
                   placeholder="Nombre completo"
                 />
               </div>
@@ -176,7 +176,7 @@ export default function UsuariosPage() {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
-                  className="w-full px-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+                  className="w-full px-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary-700 focus:border-transparent text-sm"
                   placeholder="correo@ejemplo.com"
                 />
               </div>
@@ -188,7 +188,7 @@ export default function UsuariosPage() {
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                   required
                   minLength={6}
-                  className="w-full px-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+                  className="w-full px-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary-700 focus:border-transparent text-sm"
                   placeholder="Minimo 6 caracteres"
                 />
               </div>
@@ -197,7 +197,7 @@ export default function UsuariosPage() {
                 <select
                   value={formData.role}
                   onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                  className="w-full px-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+                  className="w-full px-4 py-2.5 border border-input rounded-lg focus:ring-2 focus:ring-primary-700 focus:border-transparent text-sm"
                 >
                   <option value="editor">Editor (limitado)</option>
                   <option value="admin">Administrador (completo)</option>
@@ -211,7 +211,7 @@ export default function UsuariosPage() {
               <button
                 type="submit"
                 disabled={saving}
-                className="flex items-center gap-2 bg-primary text-primary-foreground px-6 py-2.5 rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium disabled:opacity-50"
+                className="flex items-center gap-2 bg-primary-800 text-white px-6 py-2.5 rounded-lg hover:bg-primary-700 transition-colors text-sm font-medium disabled:opacity-50"
               >
                 {saving ? 'Creando...' : 'Crear Usuario'}
               </button>
@@ -247,7 +247,7 @@ export default function UsuariosPage() {
                     <tr key={user.id} className="border-b border-border/50 hover:bg-muted/20">
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-xs font-bold text-primary">
+                          <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center text-xs font-bold text-primary-700">
                             {(user.name || user.email).charAt(0).toUpperCase()}
                           </div>
                           <span className="font-medium text-foreground">{user.name || '—'}</span>

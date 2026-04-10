@@ -53,8 +53,8 @@ export default function CambiarContrasenaPage() {
   return (
     <div>
       <div className="flex items-center gap-3 mb-8">
-        <div className="bg-primary/10 p-3 rounded-xl">
-          <Lock className="h-6 w-6 text-primary" />
+        <div className="bg-primary-100 p-3 rounded-xl">
+          <Lock className="h-6 w-6 text-primary-700" />
         </div>
         <div>
           <h1 className="text-2xl font-bold text-foreground">Cambiar Contrasena</h1>
@@ -89,7 +89,7 @@ export default function CambiarContrasenaPage() {
                 value={currentPassword}
                 onChange={(e) => setCurrentPassword(e.target.value)}
                 required
-                className="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                className="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-primary-700 focus:border-transparent transition-all"
                 placeholder="Ingrese su contrasena actual"
               />
             </div>
@@ -105,7 +105,7 @@ export default function CambiarContrasenaPage() {
                 onChange={(e) => setNewPassword(e.target.value)}
                 required
                 minLength={6}
-                className="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                className="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-primary-700 focus:border-transparent transition-all"
                 placeholder="Minimo 6 caracteres"
               />
             </div>
@@ -121,7 +121,7 @@ export default function CambiarContrasenaPage() {
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
                 minLength={6}
-                className="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                className="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-primary-700 focus:border-transparent transition-all"
                 placeholder="Repita la nueva contrasena"
               />
             </div>
@@ -129,7 +129,7 @@ export default function CambiarContrasenaPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-primary text-primary-foreground py-3 rounded-lg font-medium hover:bg-primary/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-primary-800 text-white py-3 rounded-lg font-medium hover:bg-primary-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? 'Actualizando...' : 'Actualizar Contrasena'}
             </button>
