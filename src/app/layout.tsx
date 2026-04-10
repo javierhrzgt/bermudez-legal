@@ -2,34 +2,27 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { Providers } from '@/components/shared/providers'
-import { prisma } from '@/lib/prisma'
+import { siteConfig } from '@/config/site'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export async function generateMetadata(): Promise<Metadata> {
-  const config = await prisma.siteConfig.findUnique({
-    where: { id: 'default' },
-  })
-
-  const siteName = config?.siteName || 'Bermudez Legal Consulting'
-  const siteDescription = config?.siteDescription || 'Consultoría legal especializada en Guatemala. Protegemos sus intereses y acompañamos su crecimiento empresarial.'
-
+export function generateMetadata(): Metadata {
   return {
     metadataBase: new URL(process.env.NEXTAUTH_URL ?? 'http://localhost:3000'),
     title: {
-      template: '%s | ' + siteName,
-      default: siteName,
+      template: `%s | ${siteConfig.siteName}`,
+      default: siteConfig.siteName,
     },
-    description: siteDescription,
+    description: siteConfig.siteDescription,
     icons: {
-      icon: config?.favicon || '/favicon.svg',
-      shortcut: config?.favicon || '/favicon.svg',
+      icon: siteConfig.favicon,
+      shortcut: siteConfig.favicon,
     },
     openGraph: {
-      title: siteName + ' | Bufete de Abogados en Guatemala',
-      description: siteDescription,
-      siteName: siteName,
-      images: config?.ogImage ? [config.ogImage] : ['/og-image.png'],
+      title: `${siteConfig.siteName} | Bufete de Abogados en Guatemala`,
+      description: siteConfig.siteDescription,
+      siteName: siteConfig.siteName,
+      images: [siteConfig.ogImage],
       type: 'website',
     },
   }

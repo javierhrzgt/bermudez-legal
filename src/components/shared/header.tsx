@@ -4,18 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Scale, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
-
-interface SiteConfig {
-  siteName: string;
-  logo: string;
-}
+import { siteConfig } from "@/config/site";
 
 export default function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [config, setConfig] = useState<SiteConfig>({ siteName: 'Bermudez Legal Consulting', logo: '' });
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,17 +23,6 @@ export default function Header() {
     setMenuOpen(false);
   }, [pathname]);
 
-  useEffect(() => {
-    fetch('/api/config')
-      .then(res => res.json())
-      .then(data => {
-        if (data.siteName) setConfig({ ...config, siteName: data.siteName });
-        if (data.logo) setConfig(prev => ({ ...prev, logo: data.logo }));
-      })
-      .catch(() => {})
-      .finally(() => setLoading(false));
-  }, []);
-
   const navLinks = [
     { href: '/', label: 'Inicio' },
     { href: '/servicios', label: 'Servicios' },
@@ -47,7 +30,7 @@ export default function Header() {
     { href: '/contacto', label: 'Contacto' },
   ];
 
-  const siteNameParts = config.siteName.split(' ');
+  const siteNameParts = siteConfig.siteName.split(' ');
 
   return (
     <header
