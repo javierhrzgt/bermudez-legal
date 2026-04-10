@@ -15,7 +15,6 @@ const allNavItems = [
   { href: '/admin/blog',             label: 'Blog',                 icon: FileEdit,       roles: ['admin', 'editor'] },
   { href: '/admin/mensajes',         label: 'Mensajes',             icon: MessageSquare,  roles: ['admin', 'editor'] },
   { href: '/admin/usuarios',         label: 'Usuarios',             icon: Users,          roles: ['admin']           },
-  { href: '/admin/configuracion-sitio', label: 'Configuración del Sitio', icon: Settings,   roles: ['admin', 'editor'] },
   { href: '/admin/cambiar-contrasena', label: 'Cambiar Contraseña',   icon: Lock,          roles: ['admin', 'editor'] },
 ]
 
