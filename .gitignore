@@ -76,3 +76,4 @@ Thumbs.db
 # Build
 dist/
 build/
+.playwright-mcp
