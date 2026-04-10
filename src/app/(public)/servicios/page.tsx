@@ -1,47 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Shield, FileText, Users, Briefcase, BookOpen, Scale, ArrowRight } from "lucide-react";
+import { Scale, ArrowRight } from "lucide-react";
+import { siteConfig } from "@/config/site";
 
 export default function ServiciosPage() {
-  const services = [
-    {
-      icon: Shield,
-      title: "Propiedad Intelectual",
-      description: "Protegemos sus activos intangibles más valiosos. Asesoramos en registro y defensa de marcas, patentes, derechos de autor y secretos comerciales.",
-      features: ["Registro de marcas y patentes", "Defensa contra infracciones", "Licenciamiento y transferencia", "Auditorías de PI"],
-    },
-    {
-      icon: FileText,
-      title: "Contratos Empresariales",
-      description: "Redactamos y revisamos contratos que protegen sus intereses comerciales, minimizando riesgos y asegurando el cumplimiento legal.",
-      features: ["Contratos de servicios profesionales", "Contratos de compraventa mercantil", "Acuerdos de confidencialidad (NDA)", "Contratos laborales"],
-    },
-    {
-      icon: Users,
-      title: "Asesoría Legal Corporativa",
-      description: "Acompañamiento legal integral para el día a día de su empresa, desde la constitución hasta la toma de decisiones estratégicas.",
-      features: ["Constitución de sociedades", "Gobierno corporativo", "Cumplimiento regulatorio", "Due diligence legal"],
-    },
-    {
-      icon: Briefcase,
-      title: "Derecho Mercantil",
-      description: "Asesoría especializada en todas las áreas del derecho comercial guatemalteco para el correcto funcionamiento de su negocio.",
-      features: ["Fusiones y adquisiciones", "Resolución de disputas comerciales", "Derecho bancario y financiero", "Comercio internacional"],
-    },
-    {
-      icon: BookOpen,
-      title: "Derecho Laboral",
-      description: "Orientamos a empleadores y empleados en el cumplimiento de la normativa laboral, previniendo conflictos y protegiendo derechos.",
-      features: ["Elaboración de reglamentos internos", "Negociación colectiva", "Terminación de contratos laborales", "Asesoría en prestaciones"],
-    },
-    {
-      icon: Scale,
-      title: "Litigio y Resolución de Conflictos",
-      description: "Representación legal efectiva en procesos judiciales y mecanismos alternativos de resolución de controversias.",
-      features: ["Mediación y arbitraje", "Procesos civiles y mercantiles", "Recursos administrativos", "Negociación de acuerdos"],
-    },
-  ];
-
   return (
     <div className="min-h-screen bg-linear-to-b from-gray-50 to-white">
       {/* Hero */}
@@ -54,23 +16,23 @@ export default function ServiciosPage() {
                 <span>Nuestros Servicios</span>
               </div>
               <h1 className="text-5xl font-serif font-bold text-white mb-6">
-                Soluciones Legales Integrales
+                {siteConfig.serviciosPage.title}
               </h1>
               <p className="text-xl text-primary-100 leading-relaxed mb-8">
-                Ofrecemos un portafolio completo de servicios legales diseñados para proteger y potenciar su negocio en Guatemala.
+                {siteConfig.serviciosPage.subtitle}
               </p>
               <Link
-                href="/contacto"
+                href={siteConfig.serviciosPage.cta.href}
                 className="inline-flex items-center gap-2 bg-white text-primary-900 px-8 py-4 rounded-lg font-medium hover:bg-gray-100 transition-all shadow-lg"
               >
-                <span>Solicitar Consulta</span>
+                <span>{siteConfig.serviciosPage.cta.label}</span>
                 <ArrowRight className="h-5 w-5" />
               </Link>
             </div>
             <div className="hidden lg:block">
               <div className="aspect-4/3 relative rounded-2xl overflow-hidden shadow-2xl">
                 <Image
-                  src="https://res.cloudinary.com/dlnn5kezq/image/upload/v1775102690/oficina_lf3v0g.webp"
+                  src={siteConfig.hero.image}
                   alt="Servicios legales de Bermudez Legal Consulting"
                   fill
                   className="object-cover"
@@ -85,7 +47,7 @@ export default function ServiciosPage() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => {
+            {siteConfig.services.map((service, index) => {
               const Icon = service.icon;
               return (
                 <div
@@ -120,16 +82,16 @@ export default function ServiciosPage() {
       <section className="py-20 bg-primary-900">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl font-serif font-bold text-white mb-6">
-            ¿Listo para Proteger su Negocio?
+            {siteConfig.serviciosPage.ctaBottom.title}
           </h2>
           <p className="text-xl text-primary-100 mb-8 leading-relaxed">
-            Contáctenos hoy para una consulta personalizada y descubra cómo podemos ayudarle.
+            {siteConfig.serviciosPage.ctaBottom.subtitle}
           </p>
           <Link
-            href="/contacto"
+            href={siteConfig.serviciosPage.ctaBottom.cta.href}
             className="inline-flex items-center gap-2 bg-white text-primary-900 px-8 py-4 rounded-lg font-medium hover:bg-gray-100 transition-all shadow-lg"
           >
-            <span>Agendar Consulta</span>
+            <span>{siteConfig.serviciosPage.ctaBottom.cta.label}</span>
             <ArrowRight className="h-5 w-5" />
           </Link>
         </div>
