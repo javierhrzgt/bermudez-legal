@@ -39,7 +39,7 @@ export function UpcomingAppointments({ appointments }: UpcomingAppointmentsProps
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between">
           <div>
-            <CardTitle className="text-lg font-serif">Próximas Citas</CardTitle>
+            <CardTitle className="text-lg font-serif text-primary-900">Próximas Citas</CardTitle>
             <CardDescription>Citas programadas</CardDescription>
           </div>
           <div className="flex items-center gap-1">
@@ -71,7 +71,7 @@ export function UpcomingAppointments({ appointments }: UpcomingAppointmentsProps
                   className="flex items-start justify-between gap-2 pb-3 border-b border-border/50 last:border-0 last:pb-0"
                 >
                   <div className="min-w-0 flex-1">
-                    <p className="text-sm font-medium text-foreground truncate">
+                    <p className="text-sm font-medium text-primary-900 truncate">
                       {appointment.clientName}
                     </p>
                     <p className="text-xs text-muted-foreground truncate">

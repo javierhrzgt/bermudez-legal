@@ -127,7 +127,7 @@ export default function UsuariosPage() {
             <Users className="h-6 w-6 text-primary-700" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Usuarios</h1>
+            <h1 className="text-2xl font-bold text-primary-900">Usuarios</h1>
             <p className="text-muted-foreground text-sm">Gestion de usuarios del sistema</p>
           </div>
         </div>
@@ -156,11 +156,11 @@ export default function UsuariosPage() {
 
       {showForm && (
         <div className="bg-white rounded-xl border border-border p-6 mb-6">
-          <h2 className="text-lg font-semibold text-foreground mb-4">Crear Nuevo Usuario</h2>
+          <h2 className="text-lg font-semibold text-primary-900 mb-4">Crear Nuevo Usuario</h2>
           <form onSubmit={handleCreate} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-foreground mb-1">Nombre</label>
+                <label className="block text-sm font-medium text-primary-900 mb-1">Nombre</label>
                 <input
                   type="text"
                   value={formData.name}
@@ -170,7 +170,7 @@ export default function UsuariosPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-foreground mb-1">Email *</label>
+                <label className="block text-sm font-medium text-primary-900 mb-1">Email *</label>
                 <input
                   type="email"
                   value={formData.email}
@@ -181,7 +181,7 @@ export default function UsuariosPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-foreground mb-1">Contrasena *</label>
+                <label className="block text-sm font-medium text-primary-900 mb-1">Contrasena *</label>
                 <input
                   type="password"
                   value={formData.password}
@@ -193,7 +193,7 @@ export default function UsuariosPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-foreground mb-1">Rol</label>
+                <label className="block text-sm font-medium text-primary-900 mb-1">Rol</label>
                 <select
                   value={formData.role}
                   onChange={(e) => setFormData({ ...formData, role: e.target.value })}
@@ -250,7 +250,7 @@ export default function UsuariosPage() {
                           <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center text-xs font-bold text-primary-700">
                             {(user.name || user.email).charAt(0).toUpperCase()}
                           </div>
-                          <span className="font-medium text-foreground">{user.name || '—'}</span>
+                          <span className="font-medium text-primary-900">{user.name || '—'}</span>
                         </div>
                       </td>
                       <td className="px-6 py-4 text-muted-foreground">{user.email}</td>

@@ -57,7 +57,7 @@ export default function CambiarContrasenaPage() {
           <Lock className="h-6 w-6 text-primary-700" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold text-foreground">Cambiar Contrasena</h1>
+          <h1 className="text-2xl font-bold text-primary-900">Cambiar Contrasena</h1>
           <p className="text-muted-foreground text-sm">Actualice su contrasena de acceso</p>
         </div>
       </div>
@@ -80,7 +80,7 @@ export default function CambiarContrasenaPage() {
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label htmlFor="currentPassword" className="block text-sm font-medium text-foreground mb-2">
+              <label htmlFor="currentPassword" className="block text-sm font-medium text-primary-900 mb-2">
                 Contrasena Actual
               </label>
               <input
@@ -95,7 +95,7 @@ export default function CambiarContrasenaPage() {
             </div>
 
             <div>
-              <label htmlFor="newPassword" className="block text-sm font-medium text-foreground mb-2">
+              <label htmlFor="newPassword" className="block text-sm font-medium text-primary-900 mb-2">
                 Nueva Contrasena
               </label>
               <input
@@ -111,7 +111,7 @@ export default function CambiarContrasenaPage() {
             </div>
 
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-foreground mb-2">
+              <label htmlFor="confirmPassword" className="block text-sm font-medium text-primary-900 mb-2">
                 Confirmar Nueva Contrasena
               </label>
               <input

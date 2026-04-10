@@ -57,7 +57,7 @@ export default function ConfiguracionPage() {
           <Settings className="h-6 w-6 text-primary-800" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold text-foreground">Configuracion</h1>
+          <h1 className="text-2xl font-bold text-primary-900">Configuracion</h1>
           <p className="text-muted-foreground text-sm">Administre su cuenta y preferencias</p>
         </div>
       </div>
@@ -66,7 +66,7 @@ export default function ConfiguracionPage() {
         <div className="bg-white rounded-2xl p-8 shadow-sm border border-border">
           <div className="flex items-center gap-3 mb-6">
             <Lock className="h-5 w-5 text-primary-800" />
-            <h2 className="text-lg font-semibold text-foreground">Cambiar Contrasena</h2>
+            <h2 className="text-lg font-semibold text-primary-900">Cambiar Contrasena</h2>
           </div>
 
           {message && (
@@ -85,7 +85,7 @@ export default function ConfiguracionPage() {
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label htmlFor="currentPassword" className="block text-sm font-medium text-foreground mb-2">
+              <label htmlFor="currentPassword" className="block text-sm font-medium text-primary-900 mb-2">
                 Contrasena Actual
               </label>
               <input
@@ -100,7 +100,7 @@ export default function ConfiguracionPage() {
             </div>
 
             <div>
-              <label htmlFor="newPassword" className="block text-sm font-medium text-foreground mb-2">
+              <label htmlFor="newPassword" className="block text-sm font-medium text-primary-900 mb-2">
                 Nueva Contrasena
               </label>
               <input
@@ -116,7 +116,7 @@ export default function ConfiguracionPage() {
             </div>
 
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-foreground mb-2">
+              <label htmlFor="confirmPassword" className="block text-sm font-medium text-primary-900 mb-2">
                 Confirmar Nueva Contrasena
               </label>
               <input

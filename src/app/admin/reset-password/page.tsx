@@ -110,7 +110,7 @@ function ResetPasswordContent() {
               {token ? (
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                   <div>
-                    <label htmlFor="newPassword" className="block text-sm font-medium text-foreground mb-2">
+                    <label htmlFor="newPassword" className="block text-sm font-medium text-primary-900 mb-2">
                       Nueva Contrasena
                     </label>
                     <div className="relative">
@@ -130,7 +130,7 @@ function ResetPasswordContent() {
                   </div>
 
                   <div>
-                    <label htmlFor="confirmPassword" className="block text-sm font-medium text-foreground mb-2">
+                    <label htmlFor="confirmPassword" className="block text-sm font-medium text-primary-900 mb-2">
                       Confirmar Contrasena
                     </label>
                     <div className="relative">

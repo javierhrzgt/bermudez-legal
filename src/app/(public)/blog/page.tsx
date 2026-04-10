@@ -105,7 +105,7 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
                     <h2 className="text-2xl font-serif font-bold text-primary-900 mb-4 group-hover:text-primary-700 transition-colors">
                       {post?.title ?? 'Título'}
                     </h2>
-                    <p className="text-gray-600 leading-relaxed mb-6">
+                    <p className="text-gray-700 leading-relaxed mb-6">
                       {post?.summary ?? ''}
                     </p>
                     <div className="flex flex-wrap gap-2">

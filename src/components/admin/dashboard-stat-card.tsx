@@ -43,7 +43,7 @@ export function DashboardStatCard({
           
           <Link href={href} className="block">
             <p className="text-sm text-muted-foreground mb-1">{title}</p>
-            <p className="text-4xl font-bold text-foreground">{total}</p>
+            <p className="text-4xl font-bold text-primary-900">{total}</p>
             
             <p className="text-sm text-muted-foreground mt-2">
               {highlight > 0 ? (

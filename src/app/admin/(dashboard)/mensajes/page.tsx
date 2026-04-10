@@ -65,7 +65,7 @@ export default function MensajesPage() {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-foreground">Mensajes</h1>
+        <h1 className="text-3xl font-bold text-primary-900">Mensajes</h1>
         <p className="text-muted-foreground mt-1">Mensajes recibidos del formulario de contacto</p>
       </div>
 
@@ -119,7 +119,7 @@ export default function MensajesPage() {
             <div className="bg-white rounded-xl border border-border p-6">
               <div className="flex items-start justify-between mb-6">
                 <div>
-                  <h2 className="text-xl font-bold text-foreground">{selected.name}</h2>
+                  <h2 className="text-xl font-bold text-primary-900">{selected.name}</h2>
                   <p className="text-sm text-muted-foreground">
                     {selected.email}{selected.phone ? ` · ${selected.phone}` : ''}
                   </p>
